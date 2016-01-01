@@ -16,7 +16,6 @@
 /log/*
 !/log/.keep
 /tmp
-/.idea
 =======
 *.gem
 *.rbc
