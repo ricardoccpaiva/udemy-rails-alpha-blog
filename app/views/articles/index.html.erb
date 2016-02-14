@@ -1,7 +1,3 @@
-<%= link_to "Create new article", new_article_path %>
-
-<br/>
-<br/>
 <div class="blog-post">
   <% @articles.order("created_at desc").each do |article| %>
       <h2 class="blog-post-title"><%= link_to article.title, article_path(article) %></h2>
