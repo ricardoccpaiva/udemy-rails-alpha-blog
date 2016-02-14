@@ -7,19 +7,13 @@
 <% end %>
 
 <%= form_for @article do |a| %>
-    <p>
+    <div class="form-group">
       <%= a.label :title %>
-      <%= a.text_field :title %>
-    </p>
-
-    <p>
+      <%= a.text_field :title, class:"form-control", placeholder:"Title", autofocus:true %>
+    </div>
+    <div class="form-group">
       <%= a.label :description %>
-      <%= a.text_area :description %>
-    </p>
-
-    <p>
-      <%= a.submit %>
-    </p>
+      <%= a.text_field :description, class:"form-control", placeholder:"Title", autofocus:true %>
+    </div>
+      <%= a.submit class:"btn btn-default" %>
 <% end %>
-
-<%= link_to 'Back', articles_path %>
