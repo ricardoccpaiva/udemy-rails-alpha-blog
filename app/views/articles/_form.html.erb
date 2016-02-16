@@ -17,7 +17,9 @@
     </div>
     <div class="form-group">
       <%= a.label :description %>
-      <%= a.text_field :description, class:"form-control", placeholder:"Title", autofocus:true %>
+      <%= a.text_area :description, class:"form-control input-lg", placeholder:"Title", autofocus:true %>
     </div>
-      <%= a.submit class:"btn btn-default" %>
+
+    <%= link_to 'Back', articles_path, class: "btn btn-danger" %>
+    <%= a.submit class:"btn btn-success" %>
 <% end %>
