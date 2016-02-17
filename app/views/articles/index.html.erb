@@ -5,6 +5,11 @@
       <p>
         <%= article.description %>
       </p>
+      <p>
+        <small> Created by <%= article.user.username if article.user %>,
+          <%= time_ago_in_words(article.created_at) %> ago
+        </small>
+      </p>
       <table>
         <tr>
           <td>
