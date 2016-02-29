@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
 
   before_action :set_param, only: [:edit, :update, :show, :destroy]
 
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+
   def index
     @articles = Article.all
   end
@@ -26,7 +28,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user_id = current_user.id
 
     if @article.save
       flash[:notice] = "Article was created"

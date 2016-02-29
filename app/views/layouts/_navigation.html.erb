@@ -1,8 +1,16 @@
 <div class="blog-masthead">
   <div class="container">
     <nav class="blog-nav">
-      <%= link_to 'Blog', articles_path, class: "blog-nav-item active" %>
-      <%= link_to 'New post', new_article_path, class: "blog-nav-item" %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to 'Blog', articles_path, class: "blog-nav-item active" %>
+          <%= link_to 'New post', new_article_path, class: "blog-nav-item" %>
+        </div>
+        <div class="col-md-6" align="right">
+          <%= link_to "Sign out", destroy_user_session_path, class: "blog-nav-item", :method => :delete if !current_user.nil? %>
+        </div>
+      </div>
+
     </nav>
   </div>
 </div>

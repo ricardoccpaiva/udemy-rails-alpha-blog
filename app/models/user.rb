@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
   has_many :articles
-  before_save { self.email = email.downcase }
-  validates :username,
-            uniqueness: { case_sensitive: false },
-            presence: true,
-            length: { minimum: 3, maximum: 25 }
 
-  VALID_EMAIL_REGEX= /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:github]
 
-  validates :email,
-            uniqueness: { case_sensitive: false },
-            presence: true,
-            format: { with: VALID_EMAIL_REGEX },
-            length: { minimum: 6, maximum: 100 }
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 end
